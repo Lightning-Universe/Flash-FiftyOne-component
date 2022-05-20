@@ -1,3 +1,3 @@
-from flash_fiftyone.component import FlashFiftyone
+from flash_fiftyone.component import FlashFiftyOne
 
-__all__ = ['FlashFiftyone']
+__all__ = ['FlashFiftyOne']
