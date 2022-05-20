@@ -1,6 +1,10 @@
-# LAI-flash-fiftyone
+<div align="center">
+<img src="https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/lai.png" width="200px">
 
-Flash FiftyOne component, built using LAI :zap:
+A Lightning component to serve a Flash Task using FiftyOne
+______________________________________________________________________
+
+</div>
 
 ## Use the component
 
