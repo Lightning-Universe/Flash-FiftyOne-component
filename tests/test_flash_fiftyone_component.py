@@ -3,7 +3,8 @@ import os
 from flash_fiftyone import FlashFiftyOne
 
 
-def test_flash_fiftyone():
+# TODO: add a test for text classification
+def test_flash_fiftyone_image_classification():
     checkpoint_path = "checkpoint.pt"
 
     run_dict = {
