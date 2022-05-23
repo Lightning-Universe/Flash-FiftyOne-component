@@ -9,26 +9,38 @@ ______________________________________________________________________
 ## Use the component
 
 ```python
-from typing import Any, Dict
-
 import lightning as L
-from lightning.storage.path import Path
+from lightning import LightningApp
 
 from flash_fiftyone import FlashFiftyOne
 
 class YourComponent(L.LightningFlow):
-  def __init__(self):
-    super().__init__()
-    self.flash_fiftyone = FlashFiftyOne()
+    def __init__(self):
+        super().__init__()
+        self.flash_fiftyone = FlashFiftyOne()
 
-  def run(self, run: dict, checkpoint_path):
-    # Pass a checkpoint path for FiftyOne to load
-    checkpoint_path = "sampleCheckpoint.pth"
-    # TODO: example will be complex if we mention how to retrieve this run dict
-    self.flash_fiftyone.run(
-      run_dict,
-      checkpoint_path,
-    )
+    def run(self):
+        # Pass a checkpoint path for FiftyOne to load
+        checkpoint_path = "checkpoint.pt"
+
+        run_dict = {
+            'id': 0,
+            'task': 'image_classification',
+            'url': 'https://pl-flash-data.s3.amazonaws.com/hymenoptera_data.zip',
+            'data_config': {
+                'target': 'from_folders',
+                'train_folder': 'hymenoptera_data/train/',
+                'val_folder': 'hymenoptera_data/val/'
+            }
+        }
+
+        self.flash_fiftyone.run(
+            run_dict,
+            checkpoint_path,
+        )
+
+# To launch the fiftyone component
+app = LightningApp(YourComponent(), debug=True)
 ```
 
 ## Install

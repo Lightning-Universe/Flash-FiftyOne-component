@@ -1,5 +1,3 @@
-import os
-
 from flash_fiftyone import FlashFiftyOne
 
 
