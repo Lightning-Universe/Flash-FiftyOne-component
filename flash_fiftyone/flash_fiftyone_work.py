@@ -24,7 +24,7 @@ class FiftyOneBuildConfig(BuildConfig):
         ]
 
 
-class FlashFiftyOne(TracerPythonScript):
+class FlashFiftyOneWork(TracerPythonScript):
     def __init__(self):
         super().__init__(
             __file__,

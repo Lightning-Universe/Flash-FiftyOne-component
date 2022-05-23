@@ -4,7 +4,7 @@ from typing import Any, Dict
 from lightning import LightningFlow
 from lightning.storage.path import Path
 
-from flash_fiftyone_work import FlashFiftyOneWork
+from flash_fiftyone.flash_fiftyone_work import FlashFiftyOneWork
 
 
 class FlashFiftyOne(LightningFlow):
