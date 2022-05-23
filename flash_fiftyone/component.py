@@ -4,7 +4,7 @@ from typing import Any, Dict
 from lightning import LightningFlow
 from lightning.storage.path import Path
 
-from flash_fiftyone_work import FlashFiftyOneWork
+from flash_fiftyone.flash_fiftyone_work import FlashFiftyOneWork
 
 
 class FlashFiftyOne(LightningFlow):
@@ -28,3 +28,14 @@ class FlashFiftyOne(LightningFlow):
 
         if self.work.has_succeeded:
             self.ready = True
+
+    def configure_layout(self):
+        layout = [
+            {
+                "name": "Data Explorer (FiftyOne)",
+                "content": "https://pl-flash-data.s3.amazonaws.com/assets_lightning/large_spinner.gif",
+            }
+        ]
+        if self.ready:
+            layout[0]["content"] = self.work.url
+        return layout
