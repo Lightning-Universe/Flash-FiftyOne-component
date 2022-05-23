@@ -2,6 +2,7 @@
 <img src="https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/lai.png" width="200px">
 
 A Lightning component to serve a Flash Task using FiftyOne
+
 ______________________________________________________________________
 
 </div>
@@ -14,6 +15,7 @@ from lightning import LightningApp
 
 from flash_fiftyone import FlashFiftyOne
 
+
 class YourComponent(L.LightningFlow):
     def __init__(self):
         super().__init__()
@@ -24,20 +26,21 @@ class YourComponent(L.LightningFlow):
         checkpoint_path = "checkpoint.pt"
 
         run_dict = {
-            'id': 0,
-            'task': 'image_classification',
-            'url': 'https://pl-flash-data.s3.amazonaws.com/hymenoptera_data.zip',
-            'data_config': {
-                'target': 'from_folders',
-                'train_folder': 'hymenoptera_data/train/',
-                'val_folder': 'hymenoptera_data/val/'
-            }
+            "id": 0,
+            "task": "image_classification",
+            "url": "https://pl-flash-data.s3.amazonaws.com/hymenoptera_data.zip",
+            "data_config": {
+                "target": "from_folders",
+                "train_folder": "hymenoptera_data/train/",
+                "val_folder": "hymenoptera_data/val/",
+            },
         }
 
         self.flash_fiftyone.run(
             run_dict,
             checkpoint_path,
         )
+
 
 # To launch the fiftyone component
 app = LightningApp(YourComponent(), debug=True)

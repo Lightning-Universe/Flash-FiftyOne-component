@@ -5,13 +5,12 @@ import tempfile
 from typing import Dict, List, Optional
 
 from flash.core.integrations.fiftyone import visualize
-from lightning import BuildConfig
-from lightning.components.python import TracerPythonScript
-from lightning.storage.path import Path
-
 from flashy.components import tasks
 from flashy.components.tasks import TaskMeta
 from flashy.components.utilities import generate_script
+from lightning import BuildConfig
+from lightning.components.python import TracerPythonScript
+from lightning.storage.path import Path
 
 
 class FiftyOneBuildConfig(BuildConfig):
