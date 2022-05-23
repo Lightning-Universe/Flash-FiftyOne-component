@@ -3,11 +3,8 @@ import os
 from flash_fiftyone import FlashFiftyOne
 
 
-def test_send_message():
-    token = os.environ['SLACK_TOKEN']
-    channel_id = os.environ['SLACK_CHANNEL_ID']
-
-    checkpoint_path = "sample/sampleCheckpoint.pt"
+def test_flash_fiftyone():
+    checkpoint_path = "checkpoint.pt"
 
     run_dict = {
       'id': 0,
