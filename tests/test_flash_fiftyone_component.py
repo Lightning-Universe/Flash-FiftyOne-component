@@ -1,7 +1,6 @@
 from flash_fiftyone import FlashFiftyOne
 
 
-# TODO: add a test for text classification
 def test_flash_fiftyone_image_classification():
     checkpoint_path = "checkpoint.pt"
 
