@@ -1,5 +1,4 @@
 import logging
-from typing import Any, Dict
 
 from lightning import LightningFlow
 from lightning.storage.path import Path
@@ -20,14 +19,19 @@ class FlashFiftyOne(LightningFlow):
     def run(self, run_dict: dict, checkpoint: Path):
         self.ready = False
 
-        if self.run_id != run_dict['id']:
+        if self.run_id != run_dict["id"]:
             logging.info(
-                f"Launching FiftyOne with path: {checkpoint}, of type: {type(checkpoint)}"
+                f"Launching FiftyOne with path: {checkpoint}, "
+                "of type: {type(checkpoint)}"
             )
-            self.run_id = run_dict['id']
-            self.work.run(run_dict['task'], run_dict['url'], run_dict['data_config'], checkpoint)
+            self.run_id = run_dict["id"]
+            self.work.run(
+                run_dict["task"],
+                run_dict["url"],
+                run_dict["data_config"],
+                checkpoint,
+            )
 
         if self.work.has_succeeded:
             self.ready = True
             self.url = self.work.url
-
