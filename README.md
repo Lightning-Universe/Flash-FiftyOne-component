@@ -16,7 +16,7 @@ from lightning import LightningApp
 from flash_fiftyone import FlashFiftyOne
 
 
-class YourComponent(L.LightningFlow):
+class FiftyOneComponent(L.LightningFlow):
     def __init__(self):
         super().__init__()
         self.flash_fiftyone = FlashFiftyOne()
@@ -26,7 +26,6 @@ class YourComponent(L.LightningFlow):
         checkpoint_path = "checkpoint.pt"
 
         run_dict = {
-            "id": 0,
             "task": "image_classification",
             "url": "https://pl-flash-data.s3.amazonaws.com/hymenoptera_data.zip",
             "data_config": {
@@ -37,9 +36,25 @@ class YourComponent(L.LightningFlow):
         }
 
         self.flash_fiftyone.run(
-            run_dict,
+            run_dict['task'],
+            run_dict['url'],
+            run_dict['data_config'],
             checkpoint_path,
         )
+
+    def configure_layout(self):
+        # Default cool spinner to show that it has not loaded yet!
+        layout = [
+            {
+                "name": "Data Explorer (FiftyOne)",
+                "content": "https://pl-flash-data.s3.amazonaws.com/assets_lightning/large_spinner.gif",
+            }
+        ]
+
+        # Once the FlashFiftyOne component is ready
+        if self.flash_fiftyone.ready:
+            layout[0]["content"] = self.work.url
+        return layout
 
 
 # To launch the fiftyone component

@@ -12,30 +12,22 @@ class FlashFiftyOne(LightningFlow):
         super().__init__()
 
         self.work = FlashFiftyOneWork()
-
         self.run_id = None
+        self.url = None
+
         self.ready = False
 
-    def run(self, run: Dict[str, Any], checkpoint: Path):
+    def run(self, run_id: int, task: str, url: str, data_config: Dict, checkpoint: Path):
         self.ready = False
 
-        if run["id"] != self.run_id:
+        if self.run_id != run_id:
             logging.info(
                 f"Launching FiftyOne with path: {checkpoint}, of type: {type(checkpoint)}"
             )
-            self.run_id = run["id"]
-            self.work.run(run["task"], run["url"], run["data_config"], checkpoint)
+            self.run_id = run_id
+            self.work.run(task, url, data_config, checkpoint)
 
         if self.work.has_succeeded:
             self.ready = True
+            self.url = self.work.url
 
-    def configure_layout(self):
-        layout = [
-            {
-                "name": "Data Explorer (FiftyOne)",
-                "content": "https://pl-flash-data.s3.amazonaws.com/assets_lightning/large_spinner.gif",
-            }
-        ]
-        if self.ready:
-            layout[0]["content"] = self.work.url
-        return layout
