@@ -26,19 +26,18 @@ class FiftyOneComponent(L.LightningFlow):
         checkpoint_path = "checkpoint.pt"
 
         run_dict = {
-            "task": "image_classification",
-            "url": "https://pl-flash-data.s3.amazonaws.com/hymenoptera_data.zip",
-            "data_config": {
-                "target": "from_folders",
-                "train_folder": "hymenoptera_data/train/",
-                "val_folder": "hymenoptera_data/val/",
-            },
+            'id': 0,
+            'task': 'image_classification',
+            'url': 'https://pl-flash-data.s3.amazonaws.com/hymenoptera_data.zip',
+            'data_config': {
+                'target': 'from_folders',
+                'train_folder': 'hymenoptera_data/train/',
+                'val_folder': 'hymenoptera_data/val/'
+            }
         }
 
         self.flash_fiftyone.run(
-            run_dict['task'],
-            run_dict['url'],
-            run_dict['data_config'],
+            run_dict,
             checkpoint_path,
         )
 
@@ -53,12 +52,12 @@ class FiftyOneComponent(L.LightningFlow):
 
         # Once the FlashFiftyOne component is ready
         if self.flash_fiftyone.ready:
-            layout[0]["content"] = self.work.url
+            layout[0]["content"] = self.flash_fiftyone.url
         return layout
 
 
 # To launch the fiftyone component
-app = LightningApp(YourComponent(), debug=True)
+app = LightningApp(FiftyOneComponent(), debug=True)
 ```
 
 ## Install

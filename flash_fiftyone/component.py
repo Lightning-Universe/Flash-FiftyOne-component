@@ -12,20 +12,20 @@ class FlashFiftyOne(LightningFlow):
         super().__init__()
 
         self.work = FlashFiftyOneWork()
+
         self.run_id = None
         self.url = None
-
         self.ready = False
 
-    def run(self, run_id: int, task: str, url: str, data_config: Dict, checkpoint: Path):
+    def run(self, run_dict: dict, checkpoint: Path):
         self.ready = False
 
-        if self.run_id != run_id:
+        if self.run_id != run_dict['id']:
             logging.info(
                 f"Launching FiftyOne with path: {checkpoint}, of type: {type(checkpoint)}"
             )
-            self.run_id = run_id
-            self.work.run(task, url, data_config, checkpoint)
+            self.run_id = run_dict['id']
+            self.work.run(run_dict['task'], run_dict['url'], run_dict['data_config'], checkpoint)
 
         if self.work.has_succeeded:
             self.ready = True
