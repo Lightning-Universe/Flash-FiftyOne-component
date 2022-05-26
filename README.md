@@ -9,6 +9,7 @@ ______________________________________________________________________
 
 ## Use the component
 
+Note that we have a `run_once` argument to the component, this allows you to only run it once if needed. Default is `True`, which means it will only run once if not set `False` explicitly.
 
 ```python
 import lightning as L
@@ -41,9 +42,9 @@ class FiftyOneComponent(L.LightningFlow):
         }
 
         self.flash_fiftyone.run(
-            run_dict['task'],
-            run_dict['url'],
-            run_dict['data_config'],
+            run_dict["task"],
+            run_dict["url"],
+            run_dict["data_config"],
             checkpoint_path,
         )
 
