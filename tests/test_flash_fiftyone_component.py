@@ -8,7 +8,6 @@ def test_flash_fiftyone_image_classification():
 
     # Sample run data config to test workflow
     run_dict = {
-        "id": 0,
         "task": "image_classification",
         # TODO: Maybe have a smaller dataset for test?
         "url": "https://pl-flash-data.s3.amazonaws.com/hymenoptera_data.zip",
@@ -20,8 +19,10 @@ def test_flash_fiftyone_image_classification():
     }
 
     flash_fiftyone = FlashFiftyOne()
-    result = flash_fiftyone.run(
-        run_dict,
+    flash_fiftyone.run(
+        run_dict["task"],
+        run_dict["url"],
+        run_dict["data_config"],
         checkpoint_path,
     )
-    assert result.status_code == 200
+    assert flash_fiftyone.ready
