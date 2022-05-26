@@ -1,2 +1,3 @@
-lightning-flash[image, text]
+lightning-flash[image]
+fiftyone==0.16.0
 jinja2
