@@ -9,7 +9,6 @@ ______________________________________________________________________
 
 ## Use the component
 
-
 ```python
 import lightning as L
 from lightning import LightningApp
@@ -41,9 +40,9 @@ class FiftyOneComponent(L.LightningFlow):
         }
 
         self.flash_fiftyone.run(
-            run_dict['task'],
-            run_dict['url'],
-            run_dict['data_config'],
+            run_dict["task"],
+            run_dict["url"],
+            run_dict["data_config"],
             checkpoint_path,
         )
 
