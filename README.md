@@ -9,6 +9,7 @@ ______________________________________________________________________
 
 ## Use the component
 
+
 ```python
 import lightning as L
 from lightning import LightningApp
@@ -19,7 +20,10 @@ from flash_fiftyone import FlashFiftyOne
 class FiftyOneComponent(L.LightningFlow):
     def __init__(self):
         super().__init__()
-        self.flash_fiftyone = FlashFiftyOne()
+        # We only run FlashFiftyOne once, since we only have one input
+        # default for `run_once` is `True` as well
+        self.flash_fiftyone = FlashFiftyOne(run_once=True)
+        self.layout = []
 
     def run(self):
         # Pass a checkpoint path for FiftyOne to load
@@ -37,23 +41,21 @@ class FiftyOneComponent(L.LightningFlow):
         }
 
         self.flash_fiftyone.run(
-            run_dict,
+            run_dict['task'],
+            run_dict['url'],
+            run_dict['data_config'],
             checkpoint_path,
         )
 
     def configure_layout(self):
-        # Default cool spinner to show that it has not loaded yet!
-        layout = [
-            {
-                "name": "Data Explorer (FiftyOne)",
-                "content": "https://pl-flash-data.s3.amazonaws.com/assets_lightning/large_spinner.gif",
-            }
-        ]
-
-        # Once the FlashFiftyOne component is ready
-        if self.flash_fiftyone.ready:
-            layout[0]["content"] = self.flash_fiftyone.url
-        return layout
+        if self.flash_fiftyone.ready and not self.layout:
+            self.layout.append(
+                {
+                    "name": "Predictions Explorer (FiftyOne)",
+                    "content": self.flash_fiftyone,
+                },
+            )
+        return self.layout
 
 
 # To launch the fiftyone component
