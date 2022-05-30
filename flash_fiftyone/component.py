@@ -5,12 +5,12 @@ import tempfile
 from typing import Dict, List, Optional
 
 from flash.core.integrations.fiftyone import visualize
-from flashy.components import tasks
-from flashy.components.tasks import TaskMeta
-from flashy.components.utilities import generate_script
 from lightning import BuildConfig
 from lightning.components.python import TracerPythonScript
 from lightning.storage.path import Path
+
+from flash_fiftyone import tasks
+from flash_fiftyone.utilities import generate_script
 
 
 class FiftyOneBuildConfig(BuildConfig):
@@ -24,20 +24,22 @@ class FiftyOneBuildConfig(BuildConfig):
 
 
 class FlashFiftyOne(TracerPythonScript):
-    def __init__(self, run_once=True):
+    def __init__(self, run_once=True, *args, **kwargs):
         super().__init__(
             __file__,
+            *args,
             run_once=run_once,
             parallel=True,
             port=5151,
             cloud_build_config=FiftyOneBuildConfig(),
+            **kwargs,
         )
 
         self.script_dir = tempfile.mkdtemp()
         self.script_path = os.path.join(self.script_dir, "flash_fiftyone.py")
         self._session = None
+        self._task_meta: Optional[tasks.TaskMeta] = None
         self.ready = False
-        self._task_meta: Optional[TaskMeta] = None
 
     def run(
         self,
