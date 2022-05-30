@@ -1,3 +1,4 @@
 lightning-flash[image]
 fiftyone==0.16.0
+protobuf==3.20.1
 jinja2
