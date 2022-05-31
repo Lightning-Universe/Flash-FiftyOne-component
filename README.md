@@ -7,6 +7,17 @@ ______________________________________________________________________
 
 </div>
 
+## Install
+
+Use these instructions to install:
+
+```bash
+git clone https://github.com/PyTorchLightning/LAI-flash-fiftyone.git
+cd LAI-flash-fiftyone
+pip install -r requirements.txt
+pip install -e .
+```
+
 ## Use the component
 
 **Note:**
@@ -67,15 +78,4 @@ class FiftyOneComponent(L.LightningFlow):
 
 # To launch the fiftyone component
 app = LightningApp(FiftyOneComponent(), debug=True)
-```
-
-## Install
-
-Use these instructions to install:
-
-```bash
-git clone https://github.com/PyTorchLightning/LAI-flash-fiftyone.git
-cd LAI-flash-fiftyone
-pip install -r requirements.txt
-pip install -e .
 ```
