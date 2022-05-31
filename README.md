@@ -9,7 +9,12 @@ ______________________________________________________________________
 
 ## Use the component
 
-Note that we have a `run_once` argument to the component, this allows you to only run it once if needed. Default is `True`, which means it will only run once if not set `False` explicitly.
+**Note:**
+
+1. We have a `run_once` argument to the component, this allows you to only run it once if needed. Default is `True`, which means it will only run once if not set `False` explicitly.
+1. This component currently only supports `task` as `image_classification`. Please make sure to pass `"task": "image_classification"` in the `run_dict` as shown below.
+
+To run the code below, copy the code and save it in a file `app.py`. Run the component using `lightning run app app.py`.
 
 ```python
 import lightning as L
