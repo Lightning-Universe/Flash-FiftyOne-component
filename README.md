@@ -47,7 +47,6 @@ class FiftyOneComponent(L.LightningFlow):
         checkpoint_path = "checkpoint.pt"
 
         run_dict = {
-            "id": 0,
             "task": "image_classification",
             "url": "https://pl-flash-data.s3.amazonaws.com/hymenoptera_data.zip",
             "data_config": {
