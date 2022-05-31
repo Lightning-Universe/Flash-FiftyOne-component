@@ -49,6 +49,7 @@ class FiftyOneComponent(L.LightningFlow):
         )
 
     def configure_layout(self):
+        # TODO: This needs to be updated to include the integrated spinner
         if self.flash_fiftyone.ready and not self.layout:
             self.layout.append(
                 {
