@@ -43,9 +43,6 @@ class FiftyOneComponent(L.LightningFlow):
         self.layout = []
 
     def run(self):
-        # Pass a checkpoint path for FiftyOne to load
-        checkpoint_path = "checkpoint.pt"
-
         run_dict = {
             "task": "image_classification",
             "url": "https://pl-flash-data.s3.amazonaws.com/hymenoptera_data.zip",
@@ -54,13 +51,14 @@ class FiftyOneComponent(L.LightningFlow):
                 "train_folder": "hymenoptera_data/train/",
                 "val_folder": "hymenoptera_data/val/",
             },
+            "checkpoint_path": "https://flash-weights.s3.amazonaws.com/0.7.0/image_classification_model.pt"
         }
 
         self.flash_fiftyone.run(
             run_dict["task"],
             run_dict["url"],
             run_dict["data_config"],
-            checkpoint_path,
+            run_dict["checkpoint_path"],
         )
 
     def configure_layout(self):
