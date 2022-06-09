@@ -23,8 +23,8 @@ REQUIREMENTS = [req.strip() for req in open("requirements.txt").readlines()]
 
 setup(
     name="flash_fiftyone",
-    version="0.0.2",
-    description="Run FiftyOne with Flash for any task!",
+    version="0.0.3",
+    description="Run FiftyOne with Flash for Text Classification",
     author="Kushashwa Ravi Shrimali, Ethan Harris",
     author_email="kush@grid.ai",
     url="https://github.com/PyTorchLightning/LAI-flash-fiftyone",
