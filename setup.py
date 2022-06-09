@@ -29,5 +29,6 @@ setup(
     author_email="ethan@grid.ai",
     url="https://github.com/PyTorchLightning/LAI-flash-fiftyone",
     packages=find_packages(exclude=["tests", "tests.*"]),
+    include_package_data=True,
     install_requires=setup_tools._load_requirements(_PATH_ROOT),
 )
