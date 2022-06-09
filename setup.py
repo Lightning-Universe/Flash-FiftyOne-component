@@ -23,10 +23,10 @@ REQUIREMENTS = [req.strip() for req in open("requirements.txt").readlines()]
 
 setup(
     name="flash_fiftyone",
-    version="0.0.0",
+    version="0.0.2",
     description="Run FiftyOne with Flash for any task!",
-    author="Ethan Harris, Kushashwa Ravi Shrimali",
-    author_email="ethan@grid.ai",
+    author="Kushashwa Ravi Shrimali, Ethan Harris",
+    author_email="kush@grid.ai",
     url="https://github.com/PyTorchLightning/LAI-flash-fiftyone",
     packages=find_packages(exclude=["tests", "tests.*"]),
     include_package_data=True,
