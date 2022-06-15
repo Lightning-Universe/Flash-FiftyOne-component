@@ -5,15 +5,15 @@ import tempfile
 from typing import Dict, List, Optional
 
 from flash.core.integrations.fiftyone import visualize
-from lightning import BuildConfig
-from lightning.components.python import TracerPythonScript
-from lightning.storage.path import Path
+import lightning as L
+from lightning.app.components.python import TracerPythonScript
+from lightning.app.storage.path import Path
 
 from flash_fiftyone import tasks
 from flash_fiftyone.utilities import generate_script
 
 
-class FiftyOneBuildConfig(BuildConfig):
+class FiftyOneBuildConfig(L.BuildConfig):
     def build_commands(self) -> List[str]:
         return [
             "pip install fiftyone",
