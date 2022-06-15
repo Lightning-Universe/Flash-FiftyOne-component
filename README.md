@@ -12,7 +12,7 @@ ______________________________________________________________________
 Use these instructions to install:
 
 ```bash
-git clone https://github.com/PyTorchLightning/LAI-flash-fiftyone.git
+git clone https://github.com/Lightning-AI/LAI-flash-fiftyone.git
 cd LAI-flash-fiftyone
 pip install -r requirements.txt
 pip install -e .
@@ -29,7 +29,6 @@ To run the code below, copy the code and save it in a file `app.py`. Run the com
 
 ```python
 import lightning as L
-from lightning import LightningApp
 
 from flash_fiftyone import FlashFiftyOne
 
@@ -74,5 +73,5 @@ class FiftyOneComponent(L.LightningFlow):
 
 
 # To launch the fiftyone component
-app = LightningApp(FiftyOneComponent(), debug=True)
+app = L.LightningApp(FiftyOneComponent(), debug=True)
 ```
