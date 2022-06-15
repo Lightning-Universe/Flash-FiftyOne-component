@@ -2,10 +2,6 @@ from flash_fiftyone import FlashFiftyOne
 
 
 def test_flash_fiftyone_image_classification():
-    # TODO: Maybe use mock for checkpoint
-    # Worst case: have a minimal checkpoint
-    checkpoint_path = "checkpoint.pt"
-
     # Sample run data config to test workflow
     run_dict = {
         "task": "image_classification",
@@ -16,6 +12,7 @@ def test_flash_fiftyone_image_classification():
             "train_folder": "hymenoptera_data/train/",
             "val_folder": "hymenoptera_data/val/",
         },
+        "checkpoint_path": "https://flash-weights.s3.amazonaws.com/0.7.0/image_classification_model.pt",
     }
 
     flash_fiftyone = FlashFiftyOne()
@@ -23,6 +20,6 @@ def test_flash_fiftyone_image_classification():
         run_dict["task"],
         run_dict["url"],
         run_dict["data_config"],
-        checkpoint_path,
+        run_dict["checkpoint_path"],
     )
     assert flash_fiftyone.ready
