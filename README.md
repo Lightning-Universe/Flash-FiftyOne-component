@@ -12,8 +12,8 @@ ______________________________________________________________________
 Use these instructions to install:
 
 ```bash
-git clone https://github.com/Lightning-AI/LAI-flash-fiftyone.git
-cd LAI-flash-fiftyone
+git clone https://github.com/Lightning-AI/LAI-flash-fiftyone-Component.git
+cd LAI-flash-fiftyone-Component
 pip install -r requirements.txt
 pip install -e .
 ```

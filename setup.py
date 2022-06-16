@@ -27,7 +27,7 @@ setup(
     description="Run FiftyOne with Flash for Image Classification",
     author="Kushashwa Ravi Shrimali, Ethan Harris",
     author_email="kush@lightning.ai",
-    url="https://github.com/Lightning-AI/LAI-flash-fiftyone",
+    url="https://github.com/Lightning-AI/LAI-flash-fiftyone-Component",
     packages=find_packages(exclude=["tests", "tests.*"]),
     include_package_data=True,
     install_requires=setup_tools._load_requirements(_PATH_ROOT),
