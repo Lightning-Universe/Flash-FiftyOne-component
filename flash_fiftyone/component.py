@@ -4,8 +4,8 @@ import shutil
 import tempfile
 from typing import Dict, List, Optional
 
-from flash.core.integrations.fiftyone import visualize
 import lightning as L
+from flash.core.integrations.fiftyone import visualize
 from lightning.app.components.python import TracerPythonScript
 from lightning.app.storage.path import Path
 
@@ -24,13 +24,13 @@ class FiftyOneBuildConfig(L.BuildConfig):
 
 
 class FlashFiftyOne(TracerPythonScript):
-    def __init__(self, run_once=True, *args, **kwargs):
+    def __init__(self, cache_calls=True, port=5151, *args, **kwargs):
         super().__init__(
             __file__,
             *args,
-            run_once=run_once,
+            cache_calls=cache_calls,
             parallel=True,
-            port=5151,
+            port=port,
             cloud_build_config=FiftyOneBuildConfig(),
             **kwargs,
         )
@@ -46,7 +46,7 @@ class FlashFiftyOne(TracerPythonScript):
         task: str,
         url: str,
         data_config: Dict,
-        checkpoint: Path,
+        checkpoint_path: Path,
     ):
         self._task_meta = getattr(tasks, task)
 
@@ -60,7 +60,7 @@ class FlashFiftyOne(TracerPythonScript):
             task_class=self._task_meta.task_class,
             url=url,
             data_config=data_config,
-            checkpoint=str(checkpoint),
+            checkpoint_path=str(checkpoint_path),
         )
         super().run()
 

@@ -17,9 +17,9 @@ def test_flash_fiftyone_image_classification():
 
     flash_fiftyone = FlashFiftyOne()
     flash_fiftyone.run(
-        run_dict["task"],
-        run_dict["url"],
-        run_dict["data_config"],
-        run_dict["checkpoint_path"],
+        task=run_dict["task"],
+        url=run_dict["url"],
+        data_config=run_dict["data_config"],
+        checkpoint_path=run_dict["checkpoint_path"],
     )
     assert flash_fiftyone.ready
