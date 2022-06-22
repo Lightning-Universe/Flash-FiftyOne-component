@@ -24,11 +24,11 @@ class FiftyOneBuildConfig(L.BuildConfig):
 
 
 class FlashFiftyOne(TracerPythonScript):
-    def __init__(self, cached_calls=True, port=5151, *args, **kwargs):
+    def __init__(self, cache_calls=True, port=5151, *args, **kwargs):
         super().__init__(
             __file__,
             *args,
-            cached_calls=cached_calls,
+            cache_calls=cache_calls,
             parallel=True,
             port=port,
             cloud_build_config=FiftyOneBuildConfig(),

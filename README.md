@@ -22,7 +22,7 @@ pip install -e .
 
 **Note:**
 
-1. We have a `cached_calls` argument to the component, this allows you to only run it only once as long as same arguments are passed to the `run` method of `FlashFiftyOne` class.
+1. We have a `cache_calls` argument to the component, this allows you to only run it only once as long as same arguments are passed to the `run` method of `FlashFiftyOne` class.
 1. This component currently only supports `task` as `image_classification`. Please make sure to pass `"task": "image_classification"` in the `run_dict` as shown below.
 
 To run the code below, copy the code and save it in a file `app.py`. Run the component using `lightning run app app.py`. If you want to run the app on cloud, do: `lightning run app app.py --cloud`.
@@ -36,7 +36,7 @@ from flash_fiftyone import FlashFiftyOne
 class FiftyOneComponent(L.LightningFlow):
     def __init__(self):
         super().__init__()
-        self.flash_fiftyone = FlashFiftyOne(cached_calls=True)
+        self.flash_fiftyone = FlashFiftyOne(cache_calls=True)
         self.layout = []
 
     def run(self):
