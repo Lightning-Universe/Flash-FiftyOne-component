@@ -22,10 +22,10 @@ pip install -e .
 
 **Note:**
 
-1. We have a `run_once` argument to the component, this allows you to only run it once if needed. Default is `True`, which means it will only run once if not set `False` explicitly.
+1. We have a `cached_calls` argument to the component, this allows you to only run it only once as long as same arguments are passed to the `run` method of `FlashFiftyOne` class.
 1. This component currently only supports `task` as `image_classification`. Please make sure to pass `"task": "image_classification"` in the `run_dict` as shown below.
 
-To run the code below, copy the code and save it in a file `app.py`. Run the component using `lightning run app app.py`.
+To run the code below, copy the code and save it in a file `app.py`. Run the component using `lightning run app app.py`. If you want to run the app on cloud, do: `lightning run app app.py --cloud`.
 
 ```python
 import lightning as L
@@ -36,12 +36,16 @@ from flash_fiftyone import FlashFiftyOne
 class FiftyOneComponent(L.LightningFlow):
     def __init__(self):
         super().__init__()
-        # We only run FlashFiftyOne once, since we only have one input
-        # default for `run_once` is `True` as well
-        self.flash_fiftyone = FlashFiftyOne(run_once=True)
+        self.flash_fiftyone = FlashFiftyOne(cached_calls=True)
         self.layout = []
 
     def run(self):
+        # Pass your data here:
+        # `task` can be either image_classification or text_classification
+        # `url` needs to be a downloadable link for your dataset
+        # Depending on the task you've chosen, pass the arguments to the task class
+        #   from Lightning Flash in the `data_config` dict
+        # `checkpoint_path` can either be a local path to the checkpoint or any hosted link
         run_dict = {
             "task": "image_classification",
             "url": "https://pl-flash-data.s3.amazonaws.com/hymenoptera_data.zip",
@@ -54,14 +58,14 @@ class FiftyOneComponent(L.LightningFlow):
         }
 
         self.flash_fiftyone.run(
-            run_dict["task"],
-            run_dict["url"],
-            run_dict["data_config"],
-            run_dict["checkpoint_path"],
+            task=run_dict["task"],
+            url=run_dict["url"],
+            data_config=run_dict["data_config"],
+            checkpoint_path=run_dict["checkpoint_path"],
         )
 
     def configure_layout(self):
-        # TODO: This needs to be updated to include the integrated spinner
+        # Use flash_fiftyone.ready flag - which will be `True` when fiftyone server is ready and the task is served!
         if self.flash_fiftyone.ready and not self.layout:
             self.layout.append(
                 {
@@ -72,6 +76,5 @@ class FiftyOneComponent(L.LightningFlow):
         return self.layout
 
 
-# To launch the fiftyone component
 app = L.LightningApp(FiftyOneComponent(), debug=True)
 ```
