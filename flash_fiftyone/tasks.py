@@ -20,5 +20,5 @@ image_classification = TaskMeta(
     "ImageClassifier",
     ["num_classes", "labels", "multi_label"],
     "val_accuracy",
-    True
+    True,
 )

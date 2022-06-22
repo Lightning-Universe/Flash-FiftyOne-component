@@ -54,7 +54,7 @@ class FiftyOneComponent(L.LightningFlow):
                 "train_folder": "hymenoptera_data/train/",
                 "val_folder": "hymenoptera_data/val/",
             },
-            "checkpoint_path": "https://flash-weights.s3.amazonaws.com/0.7.0/image_classification_model.pt"
+            "checkpoint_path": "https://flash-weights.s3.amazonaws.com/0.7.0/image_classification_model.pt",
         }
 
         self.flash_fiftyone.run(

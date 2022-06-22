@@ -4,8 +4,8 @@ import shutil
 import tempfile
 from typing import Dict, List, Optional
 
-from flash.core.integrations.fiftyone import visualize
 import lightning as L
+from flash.core.integrations.fiftyone import visualize
 from lightning.app.components.python import TracerPythonScript
 from lightning.app.storage.path import Path
 
