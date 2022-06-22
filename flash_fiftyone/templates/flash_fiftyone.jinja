@@ -12,5 +12,5 @@ datamodule = {{ data_module_class }}.{{ data_config["target"] }}(
 )
 
 trainer = flash.Trainer()
-model = {{ task_class }}.load_from_checkpoint("{{ checkpoint }}")
+model = {{ task_class }}.load_from_checkpoint("{{ checkpoint_path }}")
 predictions = trainer.predict(model, dataloaders=datamodule.val_dataloader(), output="fiftyone")  # output FiftyOne format

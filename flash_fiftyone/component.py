@@ -46,7 +46,7 @@ class FlashFiftyOne(TracerPythonScript):
         task: str,
         url: str,
         data_config: Dict,
-        checkpoint: Path,
+        checkpoint_path: Path,
     ):
         self._task_meta = getattr(tasks, task)
 
@@ -60,7 +60,7 @@ class FlashFiftyOne(TracerPythonScript):
             task_class=self._task_meta.task_class,
             url=url,
             data_config=data_config,
-            checkpoint=str(checkpoint),
+            checkpoint_path=str(checkpoint_path),
         )
         super().run()
 
